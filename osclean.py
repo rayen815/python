@@ -19,7 +19,7 @@ path=user+"/"+input(f"complete this path {user}/")
 
 an=input("are you sure to start ? y/n: ")
 if an=="n":
-    print("ok bye")
+    print("ok byee")
     quit()
 elif an=="y":
     os.chdir(path)
