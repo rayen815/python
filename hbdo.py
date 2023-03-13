@@ -46,7 +46,7 @@ def dec_to_hex(dec):
         dec=str(int(dec)//16)
     r=r[::-1]
     return r
- 
+
 def dec_to_oct(dec):
     dec=str(dec)
     r=""
