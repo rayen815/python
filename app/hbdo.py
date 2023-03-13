@@ -50,7 +50,7 @@ def dec_to_hex(dec):
         return r
     else:
         return "not valide number"
- 
+
 def dec_to_oct(dec):
     if isnum(dec):
         dec=str(dec)
