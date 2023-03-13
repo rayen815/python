@@ -16,8 +16,10 @@ user="C:/Users/"+user
 os.chdir(user)
 
 path=user+"/"+input(f"complete this path {user}/")
-
-an=input("are you sure to start ? y/n: ")
+v=True
+while v:
+    an=input("are you sure to start ? y/n: ")
+    v=not(an in "yn")
 if an=="n":
     print("ok byee")
     quit()
@@ -48,13 +50,27 @@ elif an=="y":
                 files["other"].append(file)
 
         for key in files.keys():
-            os.makedirs(path+"/"+key)
-            if key !="":
-                for f in files[key]:
-                    if f!="osclean.py":
-                        os.replace(path+"/"+f,path+"/"+key+"/"+f)
-                        
-else:
-    print("make sure to write a clear answer")
-    quit()
+            try:
+                os.makedirs(path+"/"+key)
+                if key !="":
+                    for f in files[key]:
+                        if f!="osclean.py":
+                            os.replace(path+"/"+f,path+"/"+key+"/"+f)
+                            if key !="":
+                                for f in files[key]:
+                                    if f!="osclean.py":
+                                        os.replace(path+"/"+f,path+"/"+key+"/"+f)
+            except:
+                print(f"{key} exists")
+                v1=False
+                while not v1:
+                    a=input("are you sure to complete ? y/n: ")
+                    v1=a in "yn"
+                if a=="y":
+                    if key !="":
+                        for f in files[key]:
+                            if f!="osclean.py":
+                                os.replace(path+"/"+f,path+"/"+key+"/"+f)
+
+
 
