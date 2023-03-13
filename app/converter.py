@@ -22,7 +22,12 @@ def check():
         t=8
     elif w.t4.isChecked():
         t=16
-    w.res.setText(convert(w.ln.text(),f,t))
+    if t==f!=0:
+        w.res.setText("choose different types")
+    elif t==0 or f==0:
+        w.res.setText("make sure to choose in both sides")
+    else:
+        w.res.setText(convert(w.ln.text(),f,t))
 app = QApplication([])    
 w=loadUi("conv.ui")
 g1=QButtonGroup(w)
