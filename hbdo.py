@@ -1,39 +1,41 @@
 def hex_to_dec(hex):
-    hex=str(hex)
-    dec=0
-    lh=len(hex)-1
-    for i in range(len(hex)):
-        if hex[i] in ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]:
+    if ishex(hex):
+        hex=str(hex)
+        dec=0
+        lh=len(hex)-1
+        for i in range(len(hex)):
             if hex[i] in ["A","B","C","D","E","F"]:
                 dec+=(ord(hex[i])-55)*(16**lh)
             else:
                 dec+=int(hex[i])*(16**lh)
-        else:
-            return "input errur"
-        lh-=1
-    return str(dec)
+            lh-=1
+        return str(dec)
+    else:
+        return "not valide number"
 
 def oct_to_dec(oct):
-    oct=str(oct)
-    dec=0
-    lh=len(oct)-1
-    for i in range(len(oct)):
-        if oct[i] in ["0","1","2","3","4","5","6","7"]:
+    if isoct(oct):
+        oct=str(oct)
+        dec=0
+        lh=len(oct)-1
+        for i in range(len(oct)):
             dec+=int(oct[i])*(8**lh)
-        else:
-            return "input errur"
-        lh-=1
-    return str(dec)
+            lh-=1
+        return str(dec)
+    else:
+        return "not valide number"
 
 def bin_to_dec(bin):
-    bin=str(bin)
-    dec=0
-    lh=len(bin)-1
-    for i in range(len(bin)):
-        if bin[i] in ["0","1"]:
+    if isbin(bin):
+        bin=str(bin)
+        dec=0
+        lh=len(bin)-1
+        for i in range(len(bin)):
             dec+=int(bin[i])*(2**lh)
-        lh-=1
-    return str(dec)
+            lh-=1
+        return str(dec)
+    else:
+        return "not valide number"
 
 def dec_to_hex(dec):
     dec=str(dec)
@@ -46,7 +48,7 @@ def dec_to_hex(dec):
         dec=str(int(dec)//16)
     r=r[::-1]
     return r
-
+ 
 def dec_to_oct(dec):
     dec=str(dec)
     r=""
@@ -167,19 +169,28 @@ def convert(num,typenum=10,totype=10):
             
 def add(num1,num2,type):
     if type==10:
-        return num1+num2
+        return int(num1)+int(num2)
     elif type ==2:
         dec1=bin_to_dec(num1)
         dec2=bin_to_dec(num2)
-        return dec_to_bin(dec1+dec2)
+        if dec1.isdecimal() and dec2.isdecimal():
+            return dec_to_bin(int(dec1)+int(dec2))
+        else:
+            return "not valide number"
     elif type ==8:
         dec1=oct_to_dec(num1)
         dec2=oct_to_dec(num2)
-        return dec_to_oct(dec1+dec2)
+        if dec1.isdecimal() and dec2.isdecimal():
+            return dec_to_oct(int(dec1)+int(dec2))
+        else:
+            return "not valide number"
     elif type ==16:
         dec1=hex_to_dec(num1)
         dec2=hex_to_dec(num2)
-        return dec_to_hex(dec1+dec2)
+        if dec1.isdecimal() and dec2.isdecimal():
+            return dec_to_hex(int(dec1)+int(dec2))
+        else:
+            return "not valide number"
     
 def multi(num1,num2,type):
     if type==10:
@@ -187,60 +198,63 @@ def multi(num1,num2,type):
     elif type ==2:
         dec1=bin_to_dec(num1)
         dec2=bin_to_dec(num2)
-        return dec_to_bin(dec1*dec2)
+        return dec_to_bin(int(dec1)*int(dec2))
     elif type ==8:
         dec1=oct_to_dec(num1)
         dec2=oct_to_dec(num2)
-        return dec_to_oct(dec1*dec2)
+        return dec_to_oct(int(dec1)*int(dec2))
     elif type ==16:
         dec1=hex_to_dec(num1)
         dec2=hex_to_dec(num2)
-        return dec_to_hex(dec1*dec2)
+        return dec_to_hex(int(dec1)*int(dec2))
         
 def minus(num1,num2,type):
     if type==10:
-        return num1-num2
+        return int(num1)-int(num2)
     elif type ==2:
         dec1=bin_to_dec(num1)
         dec2=bin_to_dec(num2)
-        return dec_to_bin(dec1-dec2)
+        return dec_to_bin(int(dec1)-int(dec2))
     elif type ==8:
         dec1=oct_to_dec(num1)
         dec2=oct_to_dec(num2)
-        return dec_to_oct(dec1-dec2)
+        return dec_to_oct(int(dec1)-int(dec2))
     elif type ==16:
         dec1=hex_to_dec(num1)
         dec2=hex_to_dec(num2)
-        return dec_to_hex(dec1-dec2)
+        return dec_to_hex(int(dec1)-int(dec2))
         
 def div(num1,num2,type):
     if type==10:
-        return num1//num2
+        return int(num1)//int(num2)
     elif type ==2:
         dec1=bin_to_dec(num1)
         dec2=bin_to_dec(num2)
-        return dec_to_bin(dec1//dec2)
+        return dec_to_bin(int(dec1)//int(dec2))
     elif type ==8:
         dec1=oct_to_dec(num1)
         dec2=oct_to_dec(num2)
-        return dec_to_oct(dec1//dec2)
+        return dec_to_oct(int(dec1)//int(dec2))
     elif type ==16:
-        dec1=hex_to_dec(num1)
+        dec1=hex_to_dev(num1)
         dec2=hex_to_dec(num2)
-        return dec_to_hex(dec1//dec2)
+        return dec_to_hex(int(dec1)//int(dec2))
 
 def pow(num1,num2,type):
     if type==10:
-        return num1**num2
+        return int(num1)**int(num2)
     elif type ==2:
         dec1=bin_to_dec(num1)
         dec2=bin_to_dec(num2)
-        return dec_to_bin(dec1**dec2)
+        return dec_to_bin(int(dec1)**int(dec2))
     elif type ==8:
         dec1=oct_to_dec(num1)
         dec2=oct_to_dec(num2)
-        return dec_to_oct(dec1**dec2)
+        return dec_to_oct(int(dec1)**int(dec2))
     elif type ==16:
         dec1=hex_to_dec(num1)
         dec2=hex_to_dec(num2)
-        return dec_to_hex(dec1**dec2)
+        return dec_to_hex(int(dec1)**int(dec2))
+        
+print(bin_to_dec("5"))
+print(add("1","1",2))
