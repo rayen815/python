@@ -33,7 +33,9 @@ def remplirf(f,f1,l):
                 e=dict()
                 e["mot"]=ch
                 e["ligne"]=i
+                print(e)
                 dump(e,f1)
+        ch=f.readline()
                 
 #pp
 e=dict(mot=str(),ligne=int())
@@ -42,9 +44,8 @@ l=saisir("ligne")
 c=saisir("colonnes")
 remplirm(l,c,m)
 f=open("mots.txt","w")
-f.write('''
-BAC
-ALGO''')
+f.write("BAC\nALGO\n")
 f=open("mots.txt","r")
 f1=open("res.dat","w")
+print(m)
 remplirf(f,f1,l)
